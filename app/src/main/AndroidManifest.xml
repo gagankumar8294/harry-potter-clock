@@ -40,7 +40,8 @@
             android:showWhenLocked="true"
             android:turnScreenOn="true"
             android:excludeFromRecents="true"
-            android:launchMode="singleTop"
+            android:launchMode="singleInstance"
+            android:taskAffinity=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
