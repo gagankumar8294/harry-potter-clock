@@ -13,10 +13,12 @@ class HarryPotterClockView(context: Context) : View(context) {
 
     private val mainPaint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val hintPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val matrix = Matrix()
 
     private var cx = 0f
     private var cy = 0f
+    private var startY = 0f
 
     // Draw loop handler (~60fps)
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -49,6 +51,14 @@ class HarryPotterClockView(context: Context) : View(context) {
             textAlign = Paint.Align.CENTER
             typeface = Typeface.create(Typeface.SERIF, Typeface.BOLD)
             setShadowLayer(8f, 2f, 4f, Color.BLACK)
+        }
+
+        hintPaint.apply {
+            color = Color.parseColor("#C5A059")
+            textSize = 34f
+            textAlign = Paint.Align.CENTER
+            typeface = Typeface.create(Typeface.SERIF, Typeface.NORMAL)
+            setShadowLayer(6f, 1f, 3f, Color.BLACK)
         }
 
         loadRawAssets()
@@ -174,6 +184,12 @@ class HarryPotterClockView(context: Context) : View(context) {
 
         val dateStr = SimpleDateFormat("EEEE, d MMMM", Locale.getDefault()).format(Date())
         canvas.drawText(dateStr, cx, height * 0.83f, textPaint)
+
+        if (context is HarryPotterLockActivity) {
+            val alphaPulse = (180 + 75 * Math.sin(System.currentTimeMillis() / 400.0)).toInt().coerceIn(0, 255)
+            hintPaint.alpha = alphaPulse
+            canvas.drawText("⚡ Swipe up or tap to unlock", cx, height * 0.90f, hintPaint)
+        }
     }
 
     private fun drawRotatedHand(canvas: Canvas, bmp: Bitmap, angleDeg: Float, pivotX: Float, pivotY: Float) {
@@ -226,9 +242,21 @@ class HarryPotterClockView(context: Context) : View(context) {
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (context is HarryPotterLockActivity && event.action == MotionEvent.ACTION_UP) {
-            (context as HarryPotterLockActivity).unlockDevice()
+        if (context is HarryPotterLockActivity) {
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    startY = event.y
+                    return true
+                }
+                MotionEvent.ACTION_UP -> {
+                    val deltaY = startY - event.y
+                    if (deltaY > 50 || Math.abs(deltaY) < 20) { // Swipe up or tap
+                        (context as HarryPotterLockActivity).unlockDevice()
+                    }
+                    return true
+                }
+            }
         }
-        return false
+        return super.onTouchEvent(event)
     }
 }
