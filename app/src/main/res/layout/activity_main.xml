@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#0B0813"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⚡ Harry Potter Lock Clock Setup"
+        android:textColor="#FFD700"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grant permissions below to 100% hide Moto's default clock digits and show ONLY your Harry Potter clock."
+        android:textColor="#E8D5A3"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/btnFullScreenIntent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="⚡ HIDE MOTO DEFAULT CLOCK ⚡"
+        android:backgroundTint="#FFD700"
+        android:textColor="#0B0813"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnSetWallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Lock Screen Live Wallpaper"
+        android:backgroundTint="#C5A059"
+        android:textColor="#0B0813"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnOverlayPermission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. Allow 'Display Over Other Apps'"
+        android:backgroundTint="#C5A059"
+        android:textColor="#0B0813"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnNotificationPermission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2. Allow Notification Permission"
+        android:backgroundTint="#C5A059"
+        android:textColor="#0B0813"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnBatteryPermission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3. Disable Battery Restrictions"
+        android:backgroundTint="#C5A059"
+        android:textColor="#0B0813"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap 'HIDE MOTO DEFAULT CLOCK' above!"
+        android:textColor="#FFD700"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+</LinearLayout>
